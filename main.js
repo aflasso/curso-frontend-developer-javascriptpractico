@@ -3,7 +3,7 @@ const emailMenu = document.querySelector(".desktop-menu");
 const mobilMenu = document.querySelector(".mobile-menu");
 const btnmenuMovil = document.querySelector(".menu")
 const menuCarritoIcon = document.querySelector(".navbar-shopping-cart")
-const aside = document.querySelector(".product-detail")
+const shoppingCartContainer = document.querySelector("#shoppingCartContainer")
 const cardsContainer = document.querySelector(".cards-container")
 
 navEmail.addEventListener("click", toggleMenuEmail)
@@ -12,11 +12,11 @@ menuCarritoIcon.addEventListener("click", toogleCarritoAside)
 
 function toggleMenuEmail(event){
 
-    const isAsideClosed = aside.classList.contains("inactive");
+    const isshoppingCartContainer = shoppingCartContainer.classList.contains("inactive");
 
     //si el mobile menu esta open, hay que cerrarlo
-    if (!isAsideClosed) {
-            aside.classList.add("inactive")
+    if (!isshoppingCartContainer) {
+        shoppingCartContainer.classList.add("inactive")
     }
 
     emailMenu.classList.toggle("inactive")
@@ -24,10 +24,10 @@ function toggleMenuEmail(event){
 
 function toggleMenuMobil(event) {
 
-    const isAsideClosed = aside.classList.contains("inactive");
+    const isshoppingCartContainer = shoppingCartContainer.classList.contains("inactive");
 
-    if (!isAsideClosed) {
-        aside.classList.add("inactive")
+    if (!isshoppingCartContainer) {
+        shoppingCartContainer.classList.add("inactive")
     }
 
     mobilMenu.classList.toggle("inactive")
@@ -45,7 +45,7 @@ function  toogleCarritoAside(event){
         emailMenu.classList.add("inactive")
     }
 
-    aside.classList.toggle("inactive")
+    shoppingCartContainer.classList.toggle("inactive")
     
 }
 
