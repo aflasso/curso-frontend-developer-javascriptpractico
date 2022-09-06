@@ -2,13 +2,17 @@ const navEmail = document.querySelector(".navbar-email");
 const emailMenu = document.querySelector(".desktop-menu");
 const mobilMenu = document.querySelector(".mobile-menu");
 const btnmenuMovil = document.querySelector(".menu")
+const productDetailCloseIcon = document.querySelector(".product-detail-close")
 const menuCarritoIcon = document.querySelector(".navbar-shopping-cart")
 const shoppingCartContainer = document.querySelector("#shoppingCartContainer")
 const cardsContainer = document.querySelector(".cards-container")
+const productDetailContainer = document.querySelector("#productDetail")
+
 
 navEmail.addEventListener("click", toggleMenuEmail)
 btnmenuMovil.addEventListener("click", toggleMenuMobil)
 menuCarritoIcon.addEventListener("click", toogleCarritoAside)
+productDetailCloseIcon.addEventListener("click", closeProductDetailAside)
 
 function toggleMenuEmail(event){
 
@@ -17,6 +21,12 @@ function toggleMenuEmail(event){
     //si el mobile menu esta open, hay que cerrarlo
     if (!isshoppingCartContainer) {
         shoppingCartContainer.classList.add("inactive")
+    }
+    
+    const isProductDetailClosed = productDetailContainer.classList.contains("inactive")
+
+    if (!isProductDetailClosed) {
+        productDetailContainer.classList.add("inactive")
     }
 
     emailMenu.classList.toggle("inactive")
@@ -29,11 +39,10 @@ function toggleMenuMobil(event) {
     if (!isshoppingCartContainer) {
         shoppingCartContainer.classList.add("inactive")
     }
+    closeProductDetailAside();
 
     mobilMenu.classList.toggle("inactive")
 }
-
-
 
 function  toogleCarritoAside(event){
     const isMobilMenuClosed = mobilMenu.classList.contains("inactive");
@@ -45,8 +54,26 @@ function  toogleCarritoAside(event){
         emailMenu.classList.add("inactive")
     }
 
+    const isProductDetailClosed = productDetailContainer.classList.contains("inactive")
+
+    if (!isProductDetailClosed) {
+        productDetailContainer.classList.add("inactive")
+    }
+
     shoppingCartContainer.classList.toggle("inactive")
     
+}
+
+function openProductDetailAside(event) {
+    productDetailContainer.classList.remove("inactive")
+    shoppingCartContainer.classList.add("inactive")
+    mobilMenu.classList.add("inactive")
+    emailMenu.classList.add("inactive")
+}
+
+function closeProductDetailAside(event){
+    productDetailContainer.classList.add("inactive")
+
 }
 
 const productList = [];
@@ -107,6 +134,7 @@ function renderProducts(arr) {
     
         const productImg = document.createElement("img")
         productImg.setAttribute("src", product.image);
+        productImg.addEventListener("click", openProductDetailAside);
     
         const productInfo = document.createElement("div")
         productInfo.classList.add("product-info")
